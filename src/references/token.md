@@ -17,7 +17,7 @@ A specification-compliant token process responds to a number of different forms 
 | -------- | ------------------------------------------------------------------------------------------------------ | ------------------ |
 | Balance  | get the balance of an identifer                                                                        | :heavy_check_mark: |
 | Balances | get a list of all ledger/account balances                                                              | :heavy_check_mark: |
-| Transfer | send 1 or more units from the callers balance to one or move targets with the option to notify targets | :x:                |
+| Transfer | Send 1 or more units from the callers balance to one or move targets with the option to notify targets | :x:                |
 | Mint     | if the ledger process is the root and you would like to increase token supply                          | :x:                |
 
 In the remainder of this section the tags necessary to spawn a compliant token process, along with the form of each of the `Action` messages and their results is described.
@@ -37,12 +37,12 @@ Every compliant token process must carry the following immutable parameters upon
 
 ### Balance(Target? : string)
 
-Returns the balance of a target, if a target is not supplied then the balance of the sender of the message must be returned.
+Returns the balance of a target, if a target is not supplied then the balance of the Sender of the message must be returned.
 
 Example `Action` message:
 
 ```lua=
-send({
+Send({
     Target = "{TokenProcess Identifier}",
     Tags = {
         Action = "Balance",
@@ -68,7 +68,7 @@ Example response message:
 Returns the balance of all participants in the token.
 
 ```lua
-send({
+Send({
     Target = "[TokenProcess Identifier]",
     Tags = {
         Action = "Balances",
@@ -91,10 +91,10 @@ Example response message:
 
 ### Transfer(Target, Quantity)
 
-If the sender has a sufficient balance, send the `Quantity` to the `Target`, issuing a `Credit-Notice` to the recipient and a `Debit-Notice` to the sender. The `Credit-` and `Debit-Notice` should forward any and all tags from the original `Transfer` message with the `X-` prefix. If the sender has an insufficient balance, fail and notify the sender.
+If the Sender has a sufficient balance, Send the `Quantity` to the `Target`, issuing a `Credit-Notice` to the recipient and a `Debit-Notice` to the Sender. The `Credit-` and `Debit-Notice` should forward any and all tags from the original `Transfer` message with the `X-` prefix. If the Sender has an insufficient balance, fail and notify the Sender.
 
 ```lua
-send({
+Send({
     Target = "[TokenProcess Identifier]",
     Tags = {
         { name = "Action", value = "Transfer" },
@@ -108,7 +108,7 @@ send({
 If a successful transfer occurs a notification message should be sent if `Cast` is not set.
 
 ```lua
-ao.send({
+Send({
     Target = "[Recipient Address]",
     Tags = {
         { name = "Action", value = "Credit-Notice" },
@@ -124,7 +124,7 @@ Recipients will infer from the `From-Process` tag of the message which tokens th
 ### Get-Info()
 
 ```lua
-send({
+Send({
     Target = "{Token}",
     Tags = {
         Action = "Info"
@@ -137,7 +137,7 @@ send({
 Implementing a `Mint` action gives the process a way of allowing valid participants to create new tokens.
 
 ```lua
-send({
+Send({
     Target ="{Token Process}",
     Tags = {
         Action = "Mint",
@@ -170,7 +170,7 @@ In addition to the normal tags that are passed in the `Credit-Notice` message to
 The modified `Credit-Notice` should be structured as follows:
 
 ```lua
-ao.send({
+Send({
     Target = "[Recipient Address]",
     Tags = {
         { name = "Action", value = "Credit-Notice" },
@@ -184,10 +184,10 @@ ao.send({
 
 ### Withdraw(Target?, Quantity)
 
-All subledgers must allow balance holders to withdraw their tokens to the parent ledger. Upon receipt of an `Action: Withdraw` message, the subledger must send an `Action` message to its `Parent-Ledger`, transferring the requested tokens to the caller's address, while debiting their account locally. This transfer will result in a `Credit-Notice` from the `Parent-Ledger` for the caller.
+All subledgers must allow balance holders to withdraw their tokens to the parent ledger. Upon receipt of an `Action: Withdraw` message, the subledger must Send an `Action` message to its `Parent-Ledger`, transferring the requested tokens to the caller's address, while debiting their account locally. This transfer will result in a `Credit-Notice` from the `Parent-Ledger` for the caller.
 
 ```lua
-send({
+Send({
     Target = "[TokenProcess Identifier]",
     Tags = {
      { name = "Action", value = "Withdraw" },
@@ -240,14 +240,14 @@ handlers.add(
     if balances[msg.From] >= qty then
       balances[msg.From] = balances[msg.From] - qty
       balances[msg.Tags.Recipient] = balances[msg.Tags.Recipient] + qty
-      ao.send({
+      Send({
         Target = msg.From,
         Tags = {
           Action = "Debit-Notice",
           Quantity = tostring(qty)
         }
       })
-      ao.send({
+      Send({
       Target = msg.Tags.Recipient,
       Tags = {
         Action = "Credit-Notice",
@@ -270,7 +270,7 @@ handlers.add(
     if balances[msg.Tags.Target] then
       bal = tostring(balances[msg.Tags.Target])
     end
-    ao.send({Target = msg.From, Tags = {
+    Send({Target = msg.From, Tags = {
       Target = msg.From,
       Balance = bal,
       Ticker = ticker or ""
@@ -284,7 +284,7 @@ handlers.add(
   "balances",
   handlers.utils.hasMatchingTag("Action", "Balances"),
   function (msg)
-    ao.send({
+    Send({
       Target = msg.From,
       Data = json.encode(balances)
     })
@@ -296,7 +296,7 @@ handlers.add(
   "info",
   handlers.utils.hasMatchingTag("Action", "Info"),
   function (msg)
-    ao.send({Target = msg.From, Tags = {
+    Send({Target = msg.From, Tags = {
       Name = name,
       Ticker = ticker,
       Denomination = tostring(denomination)
