@@ -54,7 +54,7 @@ Then implement another handler as follows:
 -- Handler to update the game state upon receiving game state information.
 Handlers.add(
   "UpdateGameState",
-  { Action = "Announcement" },
+  { Action = "GameState" },
   function (msg)
     local json = require("json")
     LatestGameState = json.decode(msg.Data)
