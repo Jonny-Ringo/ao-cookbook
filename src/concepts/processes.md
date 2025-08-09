@@ -21,7 +21,7 @@ The core module contains a helper library that gets injected into the handler fu
         Module = {
             Id = "UAUszdznoUPQvXRbrFuIIH6J0N_LnJ1h4Trej28UgrE",
             Owner = "_r9LpP4FtClpsGX3TOohubyaeb0IQTZZMcxQ24tTsGo",
-            Tags = {..}
+            Tags = {...}
         }
     },
     id = "5WzR7rJCuqCKEq02WUPhTjwnzllLjGu6SA7qhYpcKRs",
@@ -37,6 +37,13 @@ The main functions to look at in this `ao` helper is
 - ao.send(Message) - sends a message to a process
 - ao.spawn(Module, Message) - creates a new process
 
+## Ethereum Signed Process or Module
+
+For an `ao` `Process` or `Module`, if the [ANS-104 DataItem](https://specs.g8way.io/?tx=xwOgX-MmqN5_-Ny_zNu2A8o-PnTGsoRb_3FrtiMAkuw) was signed using Ethereum keys,
+then the value in the `env.Process.Owner` or `env.Module.Owner` field, respectively, will be the
+[EIP-55](https://github.com/ethereum/ercs/blob/master/ERCS/erc-55.md) Ethereum address of the signer.
+For example: `0xfB6916095ca1df60bB79Ce92cE3Ea74c37c5d359`
+
 ## ao.send Example
 
 ```lua
@@ -51,8 +58,8 @@ ao.send({
 
 ```lua
 ao.spawn(ao.env.Module.Id, {
-    ['Memory-Limit'] = "500-mb",
-    ['Compute-Limit"] = "900000000000000000"
+    ["Memory-Limit"] = "500-mb",
+    ["Compute-Limit"] = "900000000000000000"
 })
 ```
 
@@ -72,7 +79,7 @@ env = {
     Module = {
         Id = "UAUszdznoUPQvXRbrFuIIH6J0N_LnJ1h4Trej28UgrE",
         Owner = "_r9LpP4FtClpsGX3TOohubyaeb0IQTZZMcxQ24tTsGo",
-        Tags = {..}
+        Tags = {...}
     }
 }
 ```

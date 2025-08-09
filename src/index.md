@@ -12,15 +12,20 @@ hero:
       link: /welcome/index
 
 features:
-  - title: Tutorials
-    details: Follow the step-by-step tutorials to start building on ao.
-    link: /tutorials/index
+  - title: AO-Core
+    details: Learn about the protocol and standard that powers the AO computer.
+    link: /welcome/ao-core-introduction
 
-  - title: Guides
-    details: Bite size walkthroughs on specific features.
-    link: /guides/index
+  - title: AO Processes
+    details: Build smart contracts and autonomous agents using AO Processes.
+    link: /welcome/ao-processes
 
-  - title: Concepts
-    details: Learn how the ao network works under the hood.
-    link: /concepts/index
+  - title: HyperBEAM
+    details: The future of AO, written in Erlang.
+    link: https://hyperbeam.arweave.net
 ---
+
+## More Information
+
+- [Community Resources](/references/community)
+- [Release Notes](/releasenotes/index)

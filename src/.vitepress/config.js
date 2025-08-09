@@ -5,6 +5,14 @@ import { localeConfig } from "./locales.js";
 
 // https://vitepress.dev/reference/site-config
 const config = defineConfig({
+  themeConfig: {
+    /**
+     * Enable Search
+     */
+    search: {
+      provider: "local",
+    },
+  },
   head: [
     ["meta", { name: "apple-mobile-web-app-capable", content: "yes" }],
     [
@@ -14,7 +22,14 @@ const config = defineConfig({
         content: "black",
       },
     ],
-    ["link", { rel: "icon", href: "/favicon.ico" }],
+    [
+      "link",
+      {
+        rel: "icon",
+        type: "image/svg+xml",
+        href: "/ao_pictograph_lightmode.svg",
+      },
+    ],
     ["link", { rel: "preconnect", href: "https://fonts.googleapis.com" }],
     ["link", { rel: "preconnect", href: "https://fonts.gstatic.com" }],
     [
@@ -50,7 +65,6 @@ const config = defineConfig({
       i18n: languages[pageData.frontmatter.locale || "en"],
     };
   },
-
   /**
    * Needed for shim for
    */

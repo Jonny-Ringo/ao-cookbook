@@ -17,7 +17,7 @@ Let's begin by setting up the foundation for our chatroom.
 
 ## Step 1: The Foundation
 
-- Open your preferred code editor.
+- Open your preferred code editor, e.g. VS Code.
 
 ::: info
 You may find it helpful to have the [Recommended Extensions](../../references/editor-setup.md) installed in your code editor to enhance your Lua scripting experience.
@@ -52,14 +52,6 @@ With `chatroom.lua` saved, you'll now load the chatroom into `aos`.
 
   ![Loading the Chatroom into aos](/chatroom3.png)
 
-  As the screenshot above shows, you may receive `undefined` as a response. This is expected, but we still want to make sure the file loaded correctly.
-
-  ::: info
-  In the Lua Eval environment of aos, when you execute a piece of code that doesn't explicitly return a value, `undefined` is a standard response, indicating that no result was returned. This can be observed when loading resources or executing operations. For instance, executing `X = 1` will yield `undefined` because the statement does not include a return statement.
-
-  However, if you execute `X = 1; return X`, the environment will return the value `1`. This behavior is essential to understand when working within this framework, as it helps clarify the distinction between executing commands that modify state versus those intended to produce a direct output.
-  :::
-
 - Type `Members`, or whatever you named your user list, in `aos`. It should return an empty array `{ }`.
 
   ![Checking the Members List](/chatroom4.png)
@@ -81,17 +73,18 @@ The register handler will allow processes to join the chatroom.
 
      Handlers.add(
        "Register",
-       Handlers.utils.hasMatchingTag("Action", "Register"),
+       { Action = "Register"},
        function (msg)
          table.insert(Members, msg.From)
-         Handlers.utils.reply("registered")(msg)
+         print(msg.From .. " Registered")
+         msg.reply({ Data = "Registered." })
        end
      )
    ```
 
    ![Register Handler](/chatroom5.png)
 
-   This handler will allow processes to register to the chatroom by responding to the tag `Action = "Register"`. A printed message will confirm stating `registered` will appear when the registration is successful.
+   This handler will allow processes to register to the chatroom by responding to the tag `Action = "Register"`. A printed message will confirm stating `Registered.` will appear when the registration is successful.
 
 2. **Reload and Test:** Let's reload and test the script by registering ourselves to the chatroom.
 
@@ -109,7 +102,7 @@ The register handler will allow processes to join the chatroom.
    - Let's test the registration process by registering ourselves to the chatroom:
 
    ```lua
-    Send({ Target = ao.id, Action = "Register" })
+   Send({ Target = ao.id, Action = "Register" })
    ```
 
    If successful, you should see that there was a `message added to your outbox` and that you then see a new printed message that says `registered`.
@@ -135,12 +128,12 @@ Now that you have a chatroom, let's create a handler that will allow you to broa
   ```lua
     Handlers.add(
       "Broadcast",
-      Handlers.utils.hasMatchingTag("Action", "Broadcast"),
+      { Action = "Broadcast" },
       function (msg)
         for _, recipient in ipairs(Members) do
           ao.send({Target = recipient, Data = msg.Data})
         end
-        Handlers.utils.reply("Broadcasted.")(msg)
+        msg.reply({Data = "Broadcasted." })
       end
     )
   ```
@@ -151,10 +144,12 @@ Now that you have a chatroom, let's create a handler that will allow you to broa
 - Let's test the broadcast handler by sending a message to the chatroom:
 
   ```lua
-    Send({Target = ao.id, Action = "Broadcast", Data = "Broadcasting My 1st Message" })
+  Send({Target = ao.id, Action = "Broadcast", Data = "Broadcasting My 1st Message" }).receive().Data
   ```
 
-  - If successful, you should see that there was a `message added to your outbox` and that you then see a new printed message that says `Broadcasting My 1st Message` because you are also a recipient of this message since you're a member of the `Members` chatroom.
+::: info
+While we use `Send` in the console for convenience, it's recommended to use `ao.send` in handlers - see the [FAQ](../../guides/aos/faq.md#send-vs-aosend) for more details.
+:::
 
 ## Step 5: Inviting Morpheus to the Chatroom
 

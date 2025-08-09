@@ -14,6 +14,7 @@ Whether you're a seasoned developer or an aspiring game creator, this guide will
 
 Start by creating a new file named `ao-effect.lua` in your preferred directory.
 
+> [!Note]
 > Ideally, this file should be placed in the same directory where your game process runs to ease the loading of the code. Else, you'll need to use relative paths to access the file.
 
 ## Writing the Code
@@ -22,7 +23,7 @@ Now, let's dive into the logic.
 
 You'll notice that your game logic will involve calling functions and variables defined in the arena's logic. This showcases the power of composability, where your game builds on top of the existing arena logic, allowing seamless integration of variables and functions between the two. Because both logic become part of a unified logic for the game process.
 
-### Intializing Game Mechanics
+### Initializing Game Mechanics
 
 First, define essential variables and functions that set the stage for your game's mechanics:
 
@@ -171,10 +172,10 @@ Lastly, you must setup handlers:
 -- HANDLERS: Game state management for AO-Effect
 
 -- Handler for player movement
-Handlers.add("PlayerMove", Handlers.utils.hasMatchingTag("Action", "PlayerMove"), move)
+Handlers.add("PlayerMove", { Action = "PlayerMove" }, move)
 
 -- Handler for player attacks
-Handlers.add("PlayerAttack", Handlers.utils.hasMatchingTag("Action", "PlayerAttack"), attack)
+Handlers.add("PlayerAttack", { Action = "PlayerAttack" }, attack)
 ```
 
 As seen in earlier guides, the handlers help trigger functions when their respective patterns are met.
@@ -305,10 +306,10 @@ end
 -- HANDLERS: Game state management for AO-Effect
 
 -- Handler for player movement
-Handlers.add("PlayerMove", Handlers.utils.hasMatchingTag("Action", "PlayerMove"), move)
+Handlers.add("PlayerMove", { Action = "PlayerMove" }, move)
 
 -- Handler for player attacks
-Handlers.add("PlayerAttack", Handlers.utils.hasMatchingTag("Action", "PlayerAttack"), attack)
+Handlers.add("PlayerAttack", { Action = "PlayerAttack" }, attack)
 ```
 
 </details>
@@ -321,7 +322,8 @@ Once you've written your game code, it's time to load it into the `aos` game pro
 .load ao-effect.lua
 ```
 
-> Note: Make sure to load the arena blueprint in the same process as well.
+> [!Important]
+> Make sure to load the arena blueprint in the same process as well.
 
 Invite friends or create test player processes to experience your game and make any necessary adjustments for optimal performance.
 
@@ -329,4 +331,4 @@ Invite friends or create test player processes to experience your game and make 
 
 Congratulations! You've successfully expanded the arena by building your own game on top of its core functionalities. Armed with the knowledge and tools acquired in this guide, you're now equipped to build games on `aos` independently.
 
-The possibilities are endless. Continue adding more features to existing games or create entirely new ones. The sky's the limit! 🚀
+The possibilities are endless. Continue adding more features to existing games or create entirely new ones. The sky's the limit! ⌃◦🚀

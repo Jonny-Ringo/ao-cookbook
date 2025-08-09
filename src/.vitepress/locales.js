@@ -12,49 +12,45 @@ export const localeConfig = (langCode) => ({
   title: get_i18n_str(langCode, "title"),
   description: get_i18n_str(langCode, "description"),
   themeConfig: {
-    outline: {
-      label: get_i18n_str(langCode, "on-this-page"),
-    },
-    docFooter: {
-      prev: get_i18n_str(langCode, "prev-page"),
-      next: get_i18n_str(langCode, "next-page"),
-    },
-    editLink: {
-      pattern: "https://github.com/permaweb/ao-cookbook/edit/main/src/:path",
-      text: get_i18n_str(langCode, "edit-link-text"),
-    },
     logo: {
       light: { src: "/ao_pictograph_lightmode.svg", height: 26, width: 26 },
       dark: { src: "/ao_pictograph_darkmode.svg", height: 26, width: 26 },
     },
     socialLinks: [
-      { icon: "discord", link: "https://discord.gg/vYctEs7aTd" },
+      { icon: "discord", link: "https://discord.gg/qWgGxJKwNJ" },
       { icon: "github", link: "https://github.com/permaweb/ao-cookbook" },
     ],
     nav: [
       {
         text: get_i18n_str(langCode, "docs"),
-        link: get_i18n_link(langCode, "/welcome/index"),
+        link: get_i18n_link(langCode, "/welcome/ao-core-introduction"),
+      },
+      {
+        text: "LLMs.txt",
+        link: get_i18n_link(langCode, "/llms-explanation"),
       },
     ],
     sidebar: [
       {
         text: get_i18n_str(langCode, "welcome"),
-        link: get_i18n_link(langCode, "/welcome/index"),
+        // link: get_i18n_link(langCode, "/welcome/ao-core-introduction"),
         items: [
+          {
+            text: "Intro to AO-Core",
+            link: get_i18n_link(langCode, "/welcome/ao-core-introduction"),
+          },
+          {
+            text: "Intro to AO Processes",
+            link: get_i18n_link(langCode, "/welcome/ao-processes"),
+          },
+          {
+            text: "HyperBEAM Mainnet",
+            link: get_i18n_link(langCode, "/welcome/legacynet-info/index"),
+            items: [],
+          },
           {
             text: get_i18n_str(langCode, "welcome-getting-started"),
             link: get_i18n_link(langCode, "/welcome/getting-started"),
-          },
-          {
-            text: get_i18n_str(langCode, "welcome-testnet-info"),
-            link: get_i18n_link(langCode, "/welcome/testnet-info/index"),
-            items: [
-              {
-                text: get_i18n_str(langCode, "welcome-testnet-info-cred-and-quests"),
-                link: get_i18n_link(langCode, "/welcome/testnet-info/cred-and-quests"),
-              },
-            ],
           },
         ],
       },
@@ -65,6 +61,7 @@ export const localeConfig = (langCode) => ({
           {
             text: get_i18n_str(langCode, "tutorials-begin"),
             link: get_i18n_link(langCode, "/tutorials/begin/index"),
+            collapsed: true,
             items: [
               {
                 text: get_i18n_str(langCode, "tutorials-begin-preparations"),
@@ -95,6 +92,7 @@ export const localeConfig = (langCode) => ({
           {
             text: get_i18n_str(langCode, "tutorials-bots-and-games"),
             link: get_i18n_link(langCode, "/tutorials/bots-and-games/index"),
+            collapsed: true,
             items: [
               {
                 text: get_i18n_str(
@@ -187,6 +185,7 @@ export const localeConfig = (langCode) => ({
           {
             text: get_i18n_str(langCode, "guides-aos"),
             link: get_i18n_link(langCode, "/guides/aos/index"),
+            collapsed: true,
             items: [
               {
                 text: get_i18n_str(langCode, "guides-aos-intro"),
@@ -203,6 +202,10 @@ export const localeConfig = (langCode) => ({
               {
                 text: get_i18n_str(langCode, "guides-aos-prompt"),
                 link: get_i18n_link(langCode, "/guides/aos/prompt"),
+              },
+              {
+                text: get_i18n_str(langCode, "guides-aos-load"),
+                link: get_i18n_link(langCode, "/guides/aos/load"),
               },
               {
                 text: get_i18n_str(langCode, "guides-aos-pingpong"),
@@ -225,16 +228,13 @@ export const localeConfig = (langCode) => ({
                 link: get_i18n_link(langCode, "/guides/aos/faq"),
               },
               {
-                text: get_i18n_str(langCode, "guides-aos-load"),
-                link: get_i18n_link(langCode, "/guides/aos/load"),
-              },
-              {
                 text: get_i18n_str(langCode, "guides-aos-token"),
                 link: get_i18n_link(langCode, "/guides/aos/token"),
               },
               {
                 text: get_i18n_str(langCode, "guides-aos-blueprints"),
                 link: get_i18n_link(langCode, "/guides/aos/blueprints/index"),
+                collapsed: true,
                 items: [
                   {
                     text: get_i18n_str(
@@ -267,10 +267,7 @@ export const localeConfig = (langCode) => ({
                     ),
                   },
                   {
-                    text: get_i18n_str(
-                      langCode,
-                      "guides-aos-blueprints-token"
-                    ),
+                    text: get_i18n_str(langCode, "guides-aos-blueprints-token"),
                     link: get_i18n_link(
                       langCode,
                       "/guides/aos/blueprints/token",
@@ -290,7 +287,11 @@ export const localeConfig = (langCode) => ({
               },
               {
                 text: get_i18n_str(langCode, "guides-aos-modules"),
-                link: get_i18n_link(langCode, "/guides/aos/modules/index"),
+                link: get_i18n_link(
+                  langCode,
+                  "/guides/aos/modules/why-migrate",
+                ),
+                collapsed: true,
                 items: [
                   {
                     text: get_i18n_str(langCode, "guides-aos-modules-json"),
@@ -299,6 +300,10 @@ export const localeConfig = (langCode) => ({
                   {
                     text: get_i18n_str(langCode, "guides-aos-modules-ao"),
                     link: get_i18n_link(langCode, "/guides/aos/modules/ao"),
+                  },
+                  {
+                    text: get_i18n_str(langCode, "guides-aos-modules-crypto"),
+                    link: get_i18n_link(langCode, "/guides/aos/modules/crypto"),
                   },
                   {
                     text: get_i18n_str(langCode, "guides-aos-modules-base64"),
@@ -319,6 +324,7 @@ export const localeConfig = (langCode) => ({
           {
             text: get_i18n_str(langCode, "guides-aoconnect"),
             link: get_i18n_link(langCode, "/guides/aoconnect/aoconnect"),
+            collapsed: true,
             items: [
               {
                 text: get_i18n_str(langCode, "guides-installing-connect"),
@@ -366,6 +372,70 @@ export const localeConfig = (langCode) => ({
                   "/guides/aoconnect/monitoring-cron",
                 ),
               },
+              {
+                text: get_i18n_str(langCode, "guides-assign-data"),
+                link: get_i18n_link(langCode, "/guides/aoconnect/assign-data"),
+              },
+              {
+                text: get_i18n_str(langCode, "guides-signers"),
+                link: get_i18n_link(langCode, "/guides/aoconnect/signers"),
+              },
+            ],
+          },
+          {
+            text: "Migrating to HyperBEAM",
+            link: get_i18n_link(
+              langCode,
+              "/guides/migrating-to-hyperbeam/why-migrate",
+            ),
+            collapsed: true,
+            items: [
+              {
+                text: "Exposing State",
+                link: get_i18n_link(
+                  langCode,
+                  "/guides/migrating-to-hyperbeam/exposing-process-state",
+                ),
+              },
+              {
+                text: "Reading Dynamic State",
+                link: get_i18n_link(
+                  langCode,
+                  "/guides/migrating-to-hyperbeam/reading-dynamic-state",
+                ),
+              },
+              {
+                text: "Connecting with aos",
+                link: get_i18n_link(
+                  langCode,
+                  "/guides/migrating-to-hyperbeam/aos-with-hyperbeam",
+                ),
+              },
+              {
+                text: "ao-connect & HyperBEAM",
+                link: get_i18n_link(
+                  langCode,
+                  "/guides/migrating-to-hyperbeam/ao-connect",
+                ),
+              },
+            ],
+          },
+          {
+            text: "Additional Technologies",
+            collapsed: true,
+            items: [
+              {
+                text: get_i18n_str(langCode, "guides-dev-cli"),
+                link: get_i18n_link(langCode, "/guides/dev-cli/index"),
+              },
+              {
+                text: get_i18n_str(langCode, "guides-sqlite"),
+                link: get_i18n_link(langCode, "/guides/snacks/sqlite"),
+              },
+              {
+                text: get_i18n_str(langCode, "guides-weavedrive"),
+                link: get_i18n_link(langCode, "/guides/snacks/weavedrive"),
+              },
             ],
           },
         ],
@@ -375,32 +445,48 @@ export const localeConfig = (langCode) => ({
         link: get_i18n_link(langCode, "/concepts/index"),
         items: [
           {
-            text: get_i18n_str(langCode, "concepts-specs"),
-            link: get_i18n_link(langCode, "/concepts/specs"),
+            text: "AO System Architecture",
+            collapsed: true,
+            items: [
+              {
+                text: get_i18n_str(langCode, "concepts-how-it-works"),
+                link: get_i18n_link(langCode, "/concepts/how-it-works"),
+              },
+              {
+                text: get_i18n_str(langCode, "concepts-processes"),
+                link: get_i18n_link(langCode, "/concepts/processes"),
+              },
+              {
+                text: get_i18n_str(langCode, "concepts-messages"),
+                link: get_i18n_link(langCode, "/concepts/messages"),
+              },
+              {
+                text: get_i18n_str(langCode, "concepts-eval"),
+                link: get_i18n_link(langCode, "/concepts/eval"),
+              },
+              {
+                text: get_i18n_str(langCode, "concepts-units"),
+                link: get_i18n_link(langCode, "/concepts/units"),
+              },
+              {
+                text: get_i18n_str(langCode, "concepts-specs"),
+                link: get_i18n_link(langCode, "/concepts/specs"),
+              },
+            ],
           },
           {
-            text: get_i18n_str(langCode, "concepts-messages"),
-            link: get_i18n_link(langCode, "/concepts/messages"),
-          },
-          {
-            text: get_i18n_str(langCode, "concepts-processes"),
-            link: get_i18n_link(langCode, "/concepts/processes"),
-          },
-          {
-            text: get_i18n_str(langCode, "concepts-units"),
-            link: get_i18n_link(langCode, "/concepts/units"),
-          },
-          {
-            text: get_i18n_str(langCode, "concepts-how-it-works"),
-            link: get_i18n_link(langCode, "/concepts/how-it-works"),
-          },
-          {
-            text: get_i18n_str(langCode, "concepts-meet-lua"),
-            link: get_i18n_link(langCode, "/concepts/lua"),
-          },
-          {
-            text: get_i18n_str(langCode, "concepts-tour"),
-            link: get_i18n_link(langCode, "/concepts/tour"),
+            text: "Programming Environment",
+            collapsed: true,
+            items: [
+              {
+                text: get_i18n_str(langCode, "concepts-tour"),
+                link: get_i18n_link(langCode, "/concepts/tour"),
+              },
+              {
+                text: get_i18n_str(langCode, "concepts-meet-lua"),
+                link: get_i18n_link(langCode, "/concepts/lua"),
+              },
+            ],
           },
         ],
       },
@@ -409,38 +495,81 @@ export const localeConfig = (langCode) => ({
         link: get_i18n_link(langCode, "/references/index"),
         items: [
           {
-            text: get_i18n_str(langCode, "references-lua"),
-            link: get_i18n_link(langCode, "/references/lua"),
+            text: "Programming Languages",
+            collapsed: true,
+            items: [
+              {
+                text: get_i18n_str(langCode, "references-lua"),
+                link: get_i18n_link(langCode, "/references/lua"),
+              },
+              {
+                text: get_i18n_str(langCode, "references-wasm"),
+                link: get_i18n_link(langCode, "/references/wasm"),
+              },
+              {
+                text: get_i18n_str(langCode, "references-lua-optimization"),
+                link: get_i18n_link(langCode, "/references/lua-optimization"),
+              },
+            ],
           },
           {
-            text: get_i18n_str(langCode, "references-wasm"),
-            link: get_i18n_link(langCode, "/references/wasm"),
+            text: "AO API Reference",
+            collapsed: true,
+            items: [
+              {
+                text: get_i18n_str(langCode, "references-ao"),
+                link: get_i18n_link(langCode, "/references/ao"),
+              },
+              {
+                text: get_i18n_str(langCode, "references-messaging"),
+                link: get_i18n_link(langCode, "/references/messaging"),
+              },
+              {
+                text: get_i18n_str(langCode, "references-handlers"),
+                link: get_i18n_link(langCode, "/references/handlers"),
+              },
+              {
+                text: get_i18n_str(langCode, "references-token"),
+                link: get_i18n_link(langCode, "/references/token"),
+              },
+              {
+                text: get_i18n_str(langCode, "references-data"),
+                link: get_i18n_link(langCode, "/references/data"),
+              },
+              {
+                text: get_i18n_str(langCode, "references-cron"),
+                link: get_i18n_link(langCode, "/references/cron"),
+              },
+            ],
           },
           {
-            text: get_i18n_str(langCode, "references-ao"),
-            link: get_i18n_link(langCode, "/references/ao"),
+            text: "Development Environment",
+            collapsed: true,
+            items: [
+              {
+                text: get_i18n_str(langCode, "references-editor-setup"),
+                link: get_i18n_link(langCode, "/references/editor-setup"),
+              },
+              {
+                text: get_i18n_str(langCode, "guides-betteridea"),
+                link: get_i18n_link(langCode, "/references/betteridea/index"),
+              },
+            ],
           },
           {
-            text: get_i18n_str(langCode, "references-handlers"),
-            link: get_i18n_link(langCode, "/references/handlers"),
+            text: get_i18n_str(langCode, "references-community"),
+            link: get_i18n_link(langCode, "/references/community"),
           },
           {
-            text: get_i18n_str(langCode, "references-token"),
-            link: get_i18n_link(langCode, "/references/token"),
-          },
-          {
-            text: get_i18n_str(langCode, "references-data"),
-            link: get_i18n_link(langCode, "/references/data"),
-          },
-          {
-            text: get_i18n_str(langCode, "references-cron"),
-            link: get_i18n_link(langCode, "/references/cron"),
-          },
-          {
-            text: get_i18n_str(langCode, "references-editor-setup"),
-            link: get_i18n_link(langCode, "/references/editor-setup"),
+            text: get_i18n_str(langCode, "references-glossary"),
+            link: get_i18n_link(langCode, "/references/glossary"),
           },
         ],
+      },
+      {
+        text: get_i18n_str(langCode, "releasenotes"),
+        link: get_i18n_link(langCode, "/releasenotes/index"),
+        items: [],
       },
     ],
   },

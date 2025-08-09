@@ -13,10 +13,12 @@
   "docs": "文档",
   "welcome": "欢迎",
   "welcome-getting-started": "入门",
-  "welcome-testnet-info": "测试网信息",
+  "welcome-legacynet-info": "测试网信息",
+  "welcome-legacynet-info-quests": "和任务 FAQ",
   "concepts": "概念",
   "concepts-specs": "规范",
   "concepts-messages": "消息",
+  "concepts-eval": "Eval (求值)",
   "concepts-processes": "进程",
   "concepts-units": "单元",
   "concepts-how-it-works": "信使工作原理",
@@ -38,6 +40,7 @@
   "guides-aos-blueprints": "蓝图",
   "guides-aos-blueprints-token": "代币蓝图",
   "guides-aos-blueprints-chatroom": "聊天室蓝图 ",
+  "guides-aos-blueprints-cred-utils": "CRED Utils 蓝图",
   "guides-aos-blueprints-voting": "投票蓝图",
   "guides-aos-blueprints-staking": "质押蓝图",
   "guides-aos-modules": "模块",
@@ -78,5 +81,6 @@
   "references-token": "代币",
   "references-data": "加载数据",
   "references-cron": "定时消息",
-  "references-editor-setup": "ao 编辑器设置"
+  "references-editor-setup": "ao 编辑器设置",
+  "references-community": "社区"
 }

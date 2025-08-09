@@ -1,6 +1,8 @@
 # Get started in 5 minutes
 
-In less than 5 mins, we'll walk you through the process of taking your first peek into the rabbit hole. 🕳️🐇
+In less than 5 mins, we'll walk you through the process of taking your first peek into the rabbit hole of AO Processes. 🕳️🐇
+
+Now that you understand the [AO-Core protocol](./ao-core-introduction) and how [AO Processes](./ao-processes) work, let's get hands-on with creating your first AO Process.
 
 ## System requirements
 
@@ -14,7 +16,7 @@ The local client of aos is super simple to install. Just make sure you have:
 Once you have NodeJS on your machine, all you need to do is install aos and run it:
 
 ```sh
-npm i -g https://get_ao.g8way.io
+npm i -g https://get_ao.arweave.net
 ```
 
 After installation, we can simply run the command itself to start a new aos process!
@@ -31,7 +33,7 @@ The utility you just started is a local client, which is ready to relay messages
 
 After it connects, you should see the following:
 
-```sh
+```lua
           _____                   _______                   _____
          /\    \                 /::\    \                 /\    \
         /::\    \               /::::\    \               /::\    \
@@ -54,13 +56,17 @@ After it connects, you should see the following:
         \::/    /                 ~~                      \::/    /
          \/____/                                           \/____/
 
-ao Operating System
+Welcome to AOS: Your operating system for AO, the decentralized open
+access supercomputer.
 
-aos - 1.4.1
-2024 - Type ".exit" to exit
-aos process:  1xM1_lDZ428sJHpTX7rtcR6SrDubyRVO06JEEWs_eWo
+Type ".load-blueprint chat" to join the community chat and ask questions!
 
-aos>
+AOS Client Version: 1.12.1. 2024
+Type "Ctrl-C" twice to exit
+
+Your AOS process:  QFt5SR6UwJSCnmgnROq62-W8KGY9z96k1oExgn4uAzk
+
+default@aos-0.2.2[Inbox:1]>
 ```
 
 Welcome to your new home in the ao computer! The prompt you are now looking at is your own personal server in this decentralized machine. We will be using it to play with and explore ao in the rest of this tutorial.
@@ -92,9 +98,9 @@ While the result might not _look_ revolutionary, in reality you have done someth
 This makes your new shell process...
 
 - **Resilient**: There is no single place on Earth where your server actually resides. It is everywhere and nowhere -- immune from physical destruction or tampering of any kind.
-- **Permanent**: Your process will never dissappear. It will always exist in its [✨holographic state✨ ](/concepts/holographic-state) on Arweave, allowing you to recall it and continue playing with it. A contribution has been made to Arweave's storage endowment, so that you never have to think about upkeep or maintainance payments again.
+- **Permanent**: Your process will never disappear. It will always exist in its [✨holographic state✨ ](/concepts/holographic-state) on Arweave, allowing you to recall it and continue playing with it. A contribution has been made to Arweave's storage endowment, so that you never have to think about upkeep or maintenance payments again.
 - **Permissionless**: You did not have to register in order to start this server. Your right to use it is guaranteed by its underlying protocol (Arweave), no matter what Google, Amazon, or any other BigTech company says.
-- **Trustless**: The state of your server is _mathematically guaranteed_. This means that you -- and everyone else -- can trust it with certainty, without even having to trust the underlying hardware it runs on. This property lets you build trustless _services_ on top: Code that runs without any priveliged owner or controller, ruled purely by math.
+- **Trustless**: The state of your server is _mathematically guaranteed_. This means that you -- and everyone else -- can trust it with certainty, without even having to trust the underlying hardware it runs on. This property lets you build trustless _services_ on top: Code that runs without any privileged owner or controller, ruled purely by math.
 
 There is so much more to it, but these are the basics. Welcome to the ao computer, newbie! We are grateful to have you. 🫡
 

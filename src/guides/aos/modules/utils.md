@@ -33,10 +33,10 @@ This function concatenates array `b` to array `a`.
 
 ```lua
 -- returns { 1, 2, 3, 4, 5, 6 }
-concat({ 1, 2, 3 })({ 4, 5, 6 })
+concat({ 1, 2, 3 })({ 4, 5, 6 }) -- curry syntax
 
 -- returns { "hello", "world", "and", "you" }
-concat({ "hello", "world" }, { "and", "you" })
+concat({ "hello", "world" }, { "and", "you" }) -- traditional syntax
 ```
 
 ### `reduce()`
@@ -168,7 +168,7 @@ utils.reverse({ 1, 2, 3 })
 
 ### `includes()`
 
-Determinates whether a value is part of an array.
+Determines whether a value is part of an array.
 
 - **Parameters:**
   - `val`: `{any}` The element to check for

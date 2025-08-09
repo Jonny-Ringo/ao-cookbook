@@ -13,7 +13,7 @@ Go back to your `bot.lua` file and update your existing handler as follows:
 ```lua
 Handlers.add(
   "HandleAnnouncements",
-  Handlers.utils.hasMatchingTag("Action", "Announcement"),
+  { Action = "Announcement" },
   function (msg)
     ao.send({Target = Game, Action = "GetGameState"})
     print(msg.Event .. ": " .. msg.Data)
@@ -46,7 +46,7 @@ Let's define a new variable that stores the latest state as follows:
 LatestGameState = LatestGameState or nil
 ```
 
-The syntax preserves exisitng values of the variable when you load successive iterations of the `bot.lua` file in your terminal, instead of overwriting it. If there is no pre-existing value then a `nil` value is assigned to the variable.
+The syntax preserves existing values of the variable when you load successive iterations of the `bot.lua` file in your terminal, instead of overwriting it. If there is no pre-existing value then a `nil` value is assigned to the variable.
 
 Then implement another handler as follows:
 
@@ -54,7 +54,7 @@ Then implement another handler as follows:
 -- Handler to update the game state upon receiving game state information.
 Handlers.add(
   "UpdateGameState",
-  Handlers.utils.hasMatchingTag("Action", "GameState"),
+  { Action = "Announcement" },
   function (msg)
     local json = require("json")
     LatestGameState = json.decode(msg.Data)
@@ -78,7 +78,7 @@ LatestGameState = LatestGameState or nil
 
 Handlers.add(
 "HandleAnnouncements",
-Handlers.utils.hasMatchingTag("Action", "Announcement"),
+{ Action = "Announcement" },
 function (msg)
   ao.send({Target = Game, Action = "GetGameState"})
   print(msg.Event .. ": " .. msg.Data)
@@ -87,7 +87,7 @@ end
 
 Handlers.add(
 "UpdateGameState",
-Handlers.utils.hasMatchingTag("Action", "GameState"),
+{ Action = "GameState" },
 function (msg)
   local json = require("json")
   LatestGameState = json.decode(msg.Data)

@@ -1,3 +1,26 @@
+<script setup>
+  import {onMounted} from "vue"
+  import {renderRepl} from "../../tools/replRenderer.jsx"
+
+  const codes = {
+    "step-3": `Send({ Target = "process ID", Data = "Hello World!" })`,
+    "step-4": `Morpheus = "Fvan28CFY0JYl5f_ETB7d3PDwBhGS8Yq5IA0vcWulUc"`,
+    "step-4-1": `Morpheus`,
+    "step-5": `Send({ Target = Morpheus, Data = "Morpheus?" })`,
+    "step-6": `#Inbox`,
+    "step-6-1": `Inbox[#Inbox].Data`,
+    "step-7": `Send({ Target = Morpheus, Data = "Code: rabbithole", Action = "Unlock" })`,
+    "step-7-2": `Inbox[#Inbox].Data`
+  }
+
+  onMounted(() => {
+      Object.keys(codes).forEach((key) => {
+        renderRepl(key, codes[key])
+      })
+    }
+  )
+</script>
+
 # Messaging in `ao`
 
 ## Learn how Messages gives `ao` Parallel Compute Capability
@@ -30,46 +53,48 @@ aos
 
 ## Step 3: How to Send a Message
 
-```sh
-  Send({ Target = "process ID", Data = "Hello World!" })
+```lua
+Send({ Target = "process ID", Data = "Hello World!" })
 ```
+
+<div id="step-3"></div>
 
 - **Send**: The `Send` function is globally available in the aos interactive environment.
 - **Target**: To send a message to a specific process, include a `Target` field in your message.
-- **Data**: The `Data` is the text message you want received by the receiving process. In this example, the message is "Hello World!".
+- **Data**: The `Data` is the string message (or payload) you want to be received by the receiving process. In this example, the message is "Hello World!".
 
 ## Step 4: Store `Morpheus`'s Process ID
 
 We'll use the process ID provided below and store it as a variable called Morpheus.
 
-```sh
-P2RS2VtQ4XtYEvAXYDulEA9pCBCIRpJDcakTR9aW434
+```lua
+Fvan28CFY0JYl5f_ETB7d3PDwBhGS8Yq5IA0vcWulUc
 ```
 
 Copy the process ID above and store it as a variable by running the below command in the aos CLI:
 
-```sh
-Morpheus = "P2RS2VtQ4XtYEvAXYDulEA9pCBCIRpJDcakTR9aW434"
+```lua
+Morpheus = "Fvan28CFY0JYl5f_ETB7d3PDwBhGS8Yq5IA0vcWulUc"
 ```
+
+<div id="step-4"></div>
 
 This will store the process ID as a variable called `Morpheus`, making it easier to interact with the specific process ID.
 
-::: info
-When creating the `Morpheus` variable, the only response you should see is `undefined`. This is expected. To check if the variable was created successfully, type `Morpheus` and press Enter. You should see the process ID you stored.
-:::
-
 ### Check the `Morpheus` Variable
 
-```sh
-# Check the Morpheus variable by typing `Morpheus`
+```lua
+-- Check the Morpheus variable by typing `Morpheus`
  Morpheus
-# Expected Results:
-P2RS2VtQ4XtYEvAXYDulEA9pCBCIRpJDcakTR9aW434
+-- Expected Results:
+Fvan28CFY0JYl5f_ETB7d3PDwBhGS8Yq5IA0vcWulUc
 
 
-# If `undefined` is returned,
-# then the variable was not created successfully.
+-- If `undefined` is returned,
+-- then the variable was not created successfully.
 ```
+
+<div id="step-4-1"></div>
 
 ## Step 5: Send a Message to Morpheus
 
@@ -79,17 +104,19 @@ After obtaining Morpheus's process ID and storing it in a variable, you're ready
 Send({ Target = Morpheus, Data = "Morpheus?" })
 ```
 
+<div id="step-5"></div>
+
 - Your `Target` is `Morpheus` which is the variable we defined earlier using `Morpheus`'s process ID.
 - The `Data` is the message you want to send to Morpheus. In this case, it's "Morpheus?".
 
 **Expected Results:**
 
-```sh
-# Your Message Command
+```lua
+-- Your Message Command
  Send({ Target = Morpheus, Data = "Morpheus?"})
-# Message is added to the outbox
+-- Message is added to the outbox
 message added to outbox
-# A New Message is received from `Morpheus`'s process ID
+-- A New Message is received from `Morpheus`'s process ID
 New Message From BWM...ulw: Data = I am here. You are f
 
 ```
@@ -107,18 +134,20 @@ Let's check your inbox to see how many messages you have received.
 
 Inside your aos CLI, type the following command:
 
-```sh
+```lua
  #Inbox
 ```
+
+<div id="step-6"></div>
 
 If you're actively following through the tutorial, the inbox will not have many messages. However, if you've been experimenting with the aos environment, you may more than 1 message in your inbox.
 
 **Example Return:**
 
-```sh
-# Your Inbox Command
+```lua
+-- Your Inbox Command
  #Inbox
-# The command will return the number of messages in your inbox.
+-- The command will return the number of messages in your inbox.
 4
 
 ```
@@ -127,20 +156,22 @@ In the example above, the return is `4`, stating that there are four messages in
 
 As we're actively looking for `Morpheus`'s response, we'll assume his message was the last one received. To read the last message in your inbox, type the following command:
 
-```sh
+```lua
  Inbox[#Inbox].Data
 ```
+
+<div id="step-6-1"></div>
 
 This command allows you to isolate the Data from the message and only read the contents of the data.
 
 The Expected Return:
 
-```sh
-# Your Inbox[x].Data Command
+```lua
+-- Your Inbox[x].Data Command
  Inbox[#Inbox].Data
-# The command will return the `Data` of the message.
-# Data is what usually represents the text-based message
-# received from one process to another.
+-- The command will return the `Data` of the message.
+-- Data is what usually represents the text-based message
+-- received from one process to another.
 I am here. You are finally awake. Are you ready to see how far the rabbit hole goes?
 
 ```
@@ -159,7 +190,7 @@ In the case of Morpheus, we can use tags to categorize our messages, and because
 
 **Adding Tags to a Message**:
 
-- We already know that the `Data` of a message is the text-based message you want to send to another process. Earlier, we sent a message to Morpheus without any tags, in which he used a handler to respond to an exact matching data.
+- We already know that the `Data` of a message is the payload of the message you want to send to another process. Earlier, we sent a message to Morpheus without any tags, in which he used a handler to respond to an exact match within the `Data` field.
 
 ### Let's Show Morpheus That We're Ready
 
@@ -170,6 +201,16 @@ Send Morpheus a message with the tag `Action` and the value `rabbithole`.
 ```lua
 Send({ Target = Morpheus, Data = "Code: rabbithole", Action = "Unlock" })
 ```
+
+<div id="step-7"></div>
+
+**Read the message from Morpheus:**
+
+```lua
+Inbox[#Inbox].Data
+```
+
+<div id="step-7-2"></div>
 
 **Expected Return:**
 ![Morpheus Responds 2](/messaging2.png)

@@ -28,7 +28,7 @@ Though it's not required, we do recommend installing the [ao addon](../../refere
 Once you have NodeJS on your machine, all you need to do is install aos and run it:
 
 ```sh
-npm i -g https://get_ao.g8way.io
+npm i -g https://get_ao.arweave.net
 ```
 
 After installation, we can simply run the command itself to start a new aos process!
@@ -36,10 +36,6 @@ After installation, we can simply run the command itself to start a new aos proc
 ```sh
 aos
 ```
-
-<!-- :::info
-⚠ You authenticate yourself to your aos process using a keyfile. If you have an Arweave wallet you can specify it by adding a `--wallet [location]` flag. If you don't, a new keyfile will be generated and stored locally for you at `~/.aos.json`.
-::: -->
 
 ## Welcome to the rabbit hole
 
@@ -70,12 +66,17 @@ After it connects, you should see the following:
         \::/    /                 ~~                      \::/    /
          \/____/                                           \/____/
 
-ao Operating System
+Welcome to AOS: Your operating system for AO, the decentralized open
+access supercomputer.
 
-aos - 1.8.9
-2024 - Type ".exit" to exit
-aos process:  1xM1_lDZ428sJHpTX7rtcR6SrDubyRVO06JEEWs_eWo
+Type ".load-blueprint chat" to join the community chat and ask questions!
 
+AOS Client Version: 1.12.1. 2024
+Type "Ctrl-C" twice to exit
+
+Your AOS process:  QFt5SR6UwJSCnmgnROq62-W8KGY9z96k1oExgn4uAzk
+
+default@aos-0.2.2[Inbox:1]>
 
 ```
 
